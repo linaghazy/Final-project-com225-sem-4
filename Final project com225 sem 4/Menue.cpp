@@ -18,90 +18,102 @@ void Menue::displayMenu() {
 	user.changePass();
 	
 	university.setUniDeparments();
-	string role, identfier;
-	cout << "What is the role of the user: " << endl;
-	cout << "1. Student" << endl;	
-	cout << "2. Academic staff" << endl;	
-	cin >> role;
-	user.setUserRole(role);
-	if (role == "1")
-	{
-		cout << "Welcome to the student portal " << user.username<< endl;
-		student.setId(1);
-		do
-		{
-			cout << "\n\\n\n";
-			cout << "Please G to display grades" << endl;
-			cout << "Please E to enroll in a cource" << endl;
-			cout << "Please T to view transcript" << endl;
-			cout << "press (ex) to log out" << endl;
-			cout << "\n\n\n\n\n\n";
-			cin >> identfier;
-			if (identfier == "G" || identfier == "g")
-			{
-				student.studentGrades();
-				student.calculateGpa();
-			}
-			else if (identfier == "E" || identfier == "e")
-			{
-				student.enrollCource();
-			}
-			
-			else if (identfier == "T" || identfier == "t")
-			{
-				student.viewTranscript();
-			}
-			else if (identfier == "ex")
-			{
-				exitSystem();
-				break;
-			}
-			else
-			{
-				cout << "Invalid choice" << endl;
-			}
-
-		} while (identfier != "ex");
-
-	}
-	else if (role == "2")
-	{
-		string StaffInput;
-		cout << "Welcome to the Academic staff portal" << endl;
-		
-		acadStuff.setStaffId(1);
-
-		cout<<"Press H to set office hours"<<endl;
-		cout<<"Press c to view Student list"<<endl;
-		cout<<"Press G to view the grades of the students in the last assignment "<<endl;
-		cin >> StaffInput;
-		if (StaffInput == "H" || StaffInput == "h")
-		{
-			student.setOfficeHours();
-		}
-		else if (StaffInput == "C" || StaffInput == "c")
-		{
-			student.viewStudentsList();
-		}
-		else if (StaffInput == "G" || StaffInput == "g")
-		{
-			student.GradeAssignment();
-		}
-		else
-		{
-			cout << "Invalid choice" << endl;
-		}
 
 
-	}
-	else
-	{
-		cout << "Invalid choice" << endl;
-	}
+    bool exitProgram = false;
 
+    while (!exitProgram) {
+        string role;
+        cout << "What is the role of the user: " << endl;
+        cout << "1. Student" << endl;
+        cout << "2. Academic staff" << endl;
+        cout << "Enter 'exit' to quit." << endl;
+        cin >> role;
 
+        if (role == "1") {
+            cout << "Welcome to the student portal " << user.username << endl;
+            student.setId(1);
+            string identifier;
 
-	
+            do {
+                cout << "\n\n\n";
+                cout << "Please G to display grades" << endl;
+                cout << "Please E to enroll in a course" << endl;
+                cout << "Please T to view transcript" << endl;
+                cout << "Press 'ex' to log out" << endl;
+                cout << "Press 'back' to switch roles" << endl;
+                cout << "\n\n\n\n\n\n";
+                cin >> identifier;
+
+                if (identifier == "G" || identifier == "g") {
+                    student.studentGrades();    // done read from csv file
+                }
+                else if (identifier == "E" || identifier == "e") {
+                    student.enrollCourse();    // done read from csv file
+                }
+                else if (identifier == "T" || identifier == "t") {
+                    student.viewTranscript();    // done read from csv file
+                }
+                else if (identifier == "ex") {
+                    exitSystem();
+                    exitProgram = true;
+                    break;
+                }
+                else if (identifier == "back") {
+                    break; // Exit the student role and go back to role selection
+                }
+                else {
+                    cout << "Invalid choice" << endl;
+                }
+            } while (identifier != "ex");
+
+        }
+        else if (role == "2") {
+            cout << "Welcome to the Academic staff portal" << endl;
+            acadStuff.setStaffId(1);
+            string identifier;
+
+            do {
+                cout << "\n\n\n";
+                cout << "Press H to set office hours" << endl;
+                cout << "Press C to view Student list" << endl;
+                cout << "Press G to view the grades of the students in the last assignment " << endl;
+                cout << "Press 'ex' to log out" << endl;
+                cout << "Press 'back' to switch roles" << endl;
+                cout << "\n\n\n\n\n\n";
+                cin >> identifier;
+
+                if (identifier == "H" || identifier == "h") {
+                    student.setOfficeHours();
+                }
+                else if (identifier == "C" || identifier == "c") {
+                    student.viewStudentsList();
+                }
+                else if (identifier == "G" || identifier == "g") {
+                    student.GradeAssignment();
+                }
+                else if (identifier == "ex") {
+                    exitSystem();
+                    exitProgram = true;
+                    break;
+                }
+                else if (identifier == "back") {
+                    break; // Exit the academic staff role and go back to role selection
+                }
+                else {
+                    cout << "Invalid choice" << endl;
+                }
+            } while (identifier != "ex");
+
+        }
+        else if (role == "exit") {
+            exitProgram = true;
+        }
+        else {
+            cout << "Invalid choice" << endl;
+        }
+    }
+
 
 
 }

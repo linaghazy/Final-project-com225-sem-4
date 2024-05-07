@@ -3,14 +3,34 @@
 #include<string>
 using namespace std;
 void User::Register() {
-	//string username, email, password;
-	cout << "Enter your name to register  " << endl;
-	getline(cin, this->username);
-	cout << "Enter your email adress " << endl;
-	getline(cin, email);
-	cout << "Create your password "<<endl;
-	 getline(cin, password);
+
+	cout << "Enter your name to register: ";
+	while (true) {
+		getline(cin, this->username);
+		if (!this->username.empty()) {
+			break; 
+		}
+		cout << "Please enter a non-empty name: ";
+	}
+	cout << "Enter your email address: ";
+	while (true) {
+		getline(cin, email);
+		if (!email.empty()) {
+			break; 
+		}
+		cout << "Please enter a non-empty email address: ";
+	}
+
+	cout << "Create your password: ";
+	while (true) {
+		getline(cin, password);
+		if (!password.empty()) {
+			break; 
+		}
+		cout << "Please enter a non-empty password: ";
+	}
 }
+
 
 
 

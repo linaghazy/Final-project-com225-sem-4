@@ -7,16 +7,15 @@
 #include<iostream>
 #include"User.h"
 #include"Academic_staff.h"
+#include <fstream>
+#include <sstream>
+#include <string>
 using namespace std;
-class Student: 
-
-	public Academic_staff{
+class Student: public Academic_staff{
 public:
 	int Id;
 	string studentName;
 	string cources_enrolled;
-	int grades[6] = { 80, 90,95,85,100,97 };
-	string cource[6] = { "Math", "English", "physics", "History", "Chemistry", "Programming" };
 public:
 	//User(const ::string username) : username(studentName)
 	double Grades;
@@ -24,9 +23,9 @@ public:
 	void setId(int);
 	void set_studentName();
 	void studentGrades();
-	void enrollCource();
+	void enrollCourse();
 	void viewTranscript();
-	void calculateGpa();
+	void calculateGpa(int[]);
 	int updateGrade();
 #endif
 };

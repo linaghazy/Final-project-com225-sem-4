@@ -1,5 +1,8 @@
 #ifndef Academic_staff_h
 #define Academic_staff_h
+#include <fstream>
+#include <sstream>
+#include <string>
 
 
 #pragma once
