@@ -44,7 +44,7 @@ void User::login() {
 
 	if(aemail == this->email && pass == password)
 	{
-		cout << "Welcome " << this->username << "You are logged in succesfully" << endl;
+		cout << "Welcome " << this->username << ", you are logged in succesfully" << endl;
 		return;
 	}
 	
